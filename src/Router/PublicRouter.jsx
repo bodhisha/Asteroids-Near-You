@@ -12,7 +12,7 @@ export default function PublicRouter() {
   const pages = useRoutes(routes);
   !pages && navigate("/");
   return (
-    <div className="relative bg-gray-200 min-h-screen pb-24">
+    <div className="min-h-screen">
       {pages}
       {!pages && (
         <div className="flex justify-center py-16">
