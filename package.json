@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "hookrouter": "^1.2.3",
     "react": "^16.13.1",
+    "react-date-picker": "^8.0.3",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },

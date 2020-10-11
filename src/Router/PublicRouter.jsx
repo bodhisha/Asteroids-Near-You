@@ -2,10 +2,12 @@ import React from "react";
 import { useRoutes, navigate } from "hookrouter";
 import Login from "../Components/Login";
 import Home from "../Components/Home";
+import AsteroidsFilteredOnDate from "../Components/AsteroidsFilteredOnDate";
 
 const routes = {
   "/": () => <Home />,
   "/login": () => <Login />,
+  "/asteroid": () => <AsteroidsFilteredOnDate />,
 };
 
 export default function PublicRouter() {
