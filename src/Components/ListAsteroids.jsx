@@ -21,7 +21,6 @@ export default function ListAsteroids() {
         <h3 className="text-3xl font-bold text-blue-800 m-2 ">Asteroids near Earth</h3>
         <div className="flex flex-col "  >
           {asteroidData.map((asteroid) => {
-            console.log(asteroid.close_approach_data)
             return (
               <div className="bg-blue-300 p-2 m-2 rounded shadow ">
                 <div className="flex justify-between  ">

@@ -16,6 +16,7 @@ export default function AsteroidsFilteredOnDate() {
   console.log(FormatDate(startDate), FormatDate(endDate));
 
   const [asteroidData, setAsteroidData] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
@@ -24,8 +25,7 @@ export default function AsteroidsFilteredOnDate() {
         )}&end_date=${FormatDate(endDate)}&detailed=true&api_key=${apiKey}`
       );
       const data = await res.json();
-      console.log(data);
-      // setAsteroidData(data.near_earth_objects);
+      setAsteroidData(data.near_earth_objects);
     }
     fetchData();
   }, [startDate, endDate]);
@@ -47,7 +47,7 @@ export default function AsteroidsFilteredOnDate() {
           />
         </div>
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          Start Date
+          End Date
         </label>
         <div className="relative pt-2">
           <DatePicker
@@ -58,6 +58,14 @@ export default function AsteroidsFilteredOnDate() {
             format="y-MM-dd"
           />
         </div>
+
+        {/* {asteroidData && console.log("astdata=", Object.values(asteroidData))} */}
+        {asteroidData &&
+          Object.values(asteroidData).map((dateWiseData) =>
+            Object.values(dateWiseData).map((asteroid) =>
+              console.log("ki", asteroid)
+            )
+          )}
       </div>
     </div>
   );
