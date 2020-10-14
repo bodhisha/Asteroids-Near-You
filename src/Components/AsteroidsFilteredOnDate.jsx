@@ -13,7 +13,6 @@ export default function AsteroidsFilteredOnDate() {
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  console.log(FormatDate(startDate), FormatDate(endDate));
 
   const [asteroidData, setAsteroidData] = useState([]);
 
@@ -58,13 +57,84 @@ export default function AsteroidsFilteredOnDate() {
             format="y-MM-dd"
           />
         </div>
+        {/* asteroid.close_approach_data.map((date) => console.log(date.close_approach_date_full)) */}
 
-        {/* {asteroidData && console.log("astdata=", Object.values(asteroidData))} */}
+
         {asteroidData &&
-          Object.values(asteroidData).map((dateWiseData) =>
-            Object.values(dateWiseData).map((asteroid) =>
-              console.log("ki", asteroid)
-            )
+          (Object.values(asteroidData).map((dateWiseData) =>
+            Object.values(dateWiseData).map((asteroid) => asteroid)).flat().sort((a, b) => a.close_approach_data[0].epoch_date_close_approach - b.close_approach_data[0].epoch_date_close_approach).slice(0, 10).map((asteroid) => {
+              console.log(asteroid);
+              return (
+                <div className="bg-blue-300 p-2 m-2 rounded shadow ">
+                  <div className="flex justify-between  ">
+                    <p className="text-xl text-blue-700 font-bold">
+                      {asteroid.name}
+                    </p>
+                    {asteroid.is_potentially_hazardous_asteroid ? (
+                      <p className="bg-blue-500 text-sm text-white font-bold p-1 block rounded-lg">
+                        Potentially Hazardous Asteroid
+                      </p>
+                    ) : (
+                        <p className="bg-blue-500 text-sm text-white font-bold p-1 block rounded-lg">
+                          Non-Hazardous Asteroid
+                        </p>
+                      )}
+                  </div>
+                  <p className="text-sm text-blue-700 ">
+                    Estimated Diameter of Asteroid:
+                    <span className="text-md text-blue-700 font-bold">
+
+                      Min -
+                      {
+                        asteroid.estimated_diameter.kilometers
+                          .estimated_diameter_max
+                      }
+                      km , Max -
+                      {
+                        asteroid.estimated_diameter.kilometers
+                          .estimated_diameter_max
+                      }
+                      km
+                    </span>
+                  </p>
+                  <p className="text-sm text-blue-700 ">
+                    Orbiting Body :
+                    <span className="text-md text-blue-700 font-bold">
+                      {asteroid.close_approach_data.close_approach_date_full || ""}
+                    </span>
+                  </p>
+                  <p className="text-sm text-blue-700 ">
+                    Designation:
+                    <span className="text-md text-blue-700 font-bold">
+                      {asteroid.designation}
+                    </span>
+                  </p>
+                  {asteroid.close_approach_data.map((date) => {
+                    return (<> <p className="text-sm text-blue-700 ">
+                      Closesrt Approach date:
+                    <span className="text-md text-blue-700 font-bold">
+                        {
+                          (date.close_approach_date_full || "")
+                        }
+                      </span>
+                    </p></>)
+                  })}
+
+                  <p className="text-sm text-blue-700 ">
+                    Absolute Magnitude:
+                    <span className="text-md text-blue-700 font-bold">
+                      {asteroid.absolute_magnitude_h}
+                    </span>
+                  </p>
+                  <p className="text-sm text-blue-700 ">
+                    Last Observed on :
+                    <span className="text-md text-blue-700 font-bold">
+                      {asteroid.orbital_data.last_observation_date}
+                    </span>
+                  </p>
+                </div>
+              );
+            })
           )}
       </div>
     </div>
