@@ -4,9 +4,11 @@ import AsteroidsFilteredOnDate from "../Components/AsteroidsFilteredOnDate";
 import UserNavBar from "../Components/Navbar/UserNavBar";
 import Home from "../Components/Home";
 import Register from "../Components/Register";
+import Profile from "../Components/Profile";
 
 const routes = {
   "/": () => <Home />,
+  "/profile": () => <Profile />,
 };
 
 const AppRouter = () => {

@@ -3,6 +3,7 @@ import { useRoutes, navigate } from "hookrouter";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
 import PublicNavBar from "../Components/Navbar/PublicNavBar";
+import Profile from "../Components/Profile";
 
 import Home from "../Components/Home";
 import AsteroidsFilteredOnDate from "../Components/AsteroidsFilteredOnDate";
@@ -11,6 +12,7 @@ const routes = {
   "/": () => <Home />,
   "/login": () => <Login />,
   "/register": () => <Register />,
+  "/profile": () => <Profile />,
 
   "/asteroid": () => <AsteroidsFilteredOnDate />,
 };
