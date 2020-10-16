@@ -1,19 +1,33 @@
 import React, { useState, useEffect } from "react";
 import ShowAsteroid from "./ShowAsteroid";
+import { Loading } from "../Components/Common/Loader";
 const apiKey = process.env.REACT_APP_NASA_API_KEY;
 
 export default function SearchAsteroid({ id }) {
+  const [loading, setloading] = useState(false);
+
   const [asteroid, setAsteroid] = useState([]);
+  // setloading(true);
+
   useEffect(() => {
+    setloading(true);
     async function fetchData(id) {
       const res = await fetch(
         `https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${apiKey}`
       );
       const data = await res.json();
       setAsteroid(data);
+      setloading(false);
     }
     fetchData(id);
   }, [id]);
+  // console.log("asteroid", asteroid.estimated_diameter.kilometers);
 
-  return <div>{asteroid && asteroid.name}</div>;
+  console.log("asteroidinsearch", asteroid);
+  return <div>{loading ? <Loading /> : <div>{asteroid.name}</div>}</div>;
+  // return (
+  //   <div className="mx-auto">
+  //     <ShowAsteroid key={asteroid.id} asteroid={asteroid} />;
+  //   </div>
+  // );
 }

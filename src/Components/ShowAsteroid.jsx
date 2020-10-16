@@ -3,7 +3,7 @@ import { useContext } from "react";
 import fire from "firebase";
 import { AuthContext } from "../Components/Context/AuthContext";
 
-export default function ListAsteroids({ asteroid }) {
+export default function ShowAsteroid({ asteroid }) {
   const [user, setUser] = useContext(AuthContext);
 
   const handleFavourites = (id) => {

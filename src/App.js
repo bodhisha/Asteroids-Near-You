@@ -14,7 +14,6 @@ function App() {
       fire.auth().onAuthStateChanged((user) => {
         if (user) {
           setUser(user.uid);
-          console.log("signed in", user.uid);
         } else {
           setUser("");
           console.log("no user");
