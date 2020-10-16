@@ -1,12 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import fire from "firebase"
+import fire from "firebase";
 
 const apiKey = process.env.REACT_APP_NASA_API_KEY;
 export default function ListAsteroids() {
   const [asteroidData, setAsteroidData] = useState([]);
-  const [favourites, setFavourites] = useState([])
-  const currentUser = fire.auth().currentUser?.uid
+  const [favourites, setFavourites] = useState([]);
+  const currentUser = fire.auth().currentUser?.uid;
   console.log("user", currentUser);
   useEffect(() => {
     async function fetchData() {
@@ -18,22 +18,21 @@ export default function ListAsteroids() {
     }
     fetchData();
   }, []);
-
+  console.log(asteroidData);
   const handleFavourites = (id) => {
-
-    fire.firestore().collection("favourites").add({
-      asteroid_id: id,
-      user_id: currentUser
-
-    })
+    fire
+      .firestore()
+      .collection("favourites")
+      .add({
+        asteroid_id: id,
+        user_id: currentUser,
+      })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
       })
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
-
-
   };
   return (
     <>
@@ -54,10 +53,10 @@ export default function ListAsteroids() {
                       Potentially Hazardous Asteroid
                     </p>
                   ) : (
-                      <p className="bg-blue-500 text-sm text-white font-bold p-1 block rounded-lg">
-                        Non-Hazardous Asteroid
-                      </p>
-                    )}
+                    <p className="bg-blue-500 text-sm text-white font-bold p-1 block rounded-lg">
+                      Non-Hazardous Asteroid
+                    </p>
+                  )}
                 </div>
                 <p className="text-sm text-blue-700 ">
                   Estimated Diameter of Asteroid:
@@ -78,7 +77,7 @@ export default function ListAsteroids() {
                 <p className="text-sm text-blue-700 ">
                   Orbiting Body :
                   <span className="text-md text-blue-700 font-bold">
-                    {asteroid.close_approach_data.close_approach_date_full}
+                    {asteroid.neo_reference_id}
                   </span>
                 </p>
                 <p className="text-sm text-blue-700 ">
@@ -100,7 +99,10 @@ export default function ListAsteroids() {
                       {asteroid.orbital_data.last_observation_date}
                     </span>
                   </p>
-                  <button onClick={() => handleFavourites(asteroid.id)} className="bg-blue-500 text-sm text-white font-bold p-1 block rounded hover:bg-blue-400 hover:text-blue-700 ">
+                  <button
+                    onClick={() => handleFavourites(asteroid.id)}
+                    className="bg-blue-500 text-sm text-white font-bold p-1 block rounded hover:bg-blue-400 hover:text-blue-700 "
+                  >
                     Add to favourites
                   </button>
                 </div>

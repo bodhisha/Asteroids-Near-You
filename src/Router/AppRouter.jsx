@@ -6,12 +6,14 @@ import Home from "../Components/Home";
 import Register from "../Components/Register";
 import Profile from "../Components/Profile";
 
-const routes = {
-  "/": () => <Home />,
-  "/profile": () => <Profile />,
-};
+const AppRouter = (userId) => {
+  console.log("router", userId);
 
-const AppRouter = () => {
+  const routes = {
+    "/": () => <Home />,
+    "/profile": () => <Profile user={userId} />,
+  };
+  console.log("app router here");
   const pages = useRoutes(routes);
   !pages && navigate("/");
   return (

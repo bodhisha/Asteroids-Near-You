@@ -48,14 +48,14 @@ export default function NavBar({ links, logout }) {
         <div className="text-sm lg:flex-grow flex flex-col lg:flex-row">
           {links &&
             links.map((el) => (
-              <a
+              <A
                 key={el.title}
                 onClick={() => setShown(!shown)}
                 className="block text-blue-800 text-base font-bold lg:inline-block lg:mt-0 text-gray-200 hover:text-white pr-20 lg:px-4 py-2 text-right lg:text-left lg:hover:bg-blue-300 hover:bg-blue-300"
                 href={el.link}
               >
                 {el.title}
-              </a>
+              </A>
             ))}
         </div>
         <div className="flex justify-end">

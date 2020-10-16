@@ -8,22 +8,27 @@ import fire from "firebase";
 function App() {
   const [user, setUser] = useState("");
   const authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-        console.log("signed in");
-      } else {
-        setUser("");
-        console.log("no user");
-      }
-    });
+    if (user) {
+      console.log("foo");
+    } else {
+      fire.auth().onAuthStateChanged((user) => {
+        if (user) {
+          setUser(user.uid);
+          console.log("signed in", user.uid);
+        } else {
+          setUser("");
+          console.log("no user");
+        }
+      });
+    }
   };
 
   useEffect(() => {
     authListener();
   }, []);
 
-  if (user) return <AppRouter />;
+  console.log("app", user ? "hola" : "bolo");
+  if (user) return <AppRouter userId={user} />;
   else {
     return <PublicRouter />;
   }
