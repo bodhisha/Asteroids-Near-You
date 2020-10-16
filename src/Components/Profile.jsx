@@ -11,7 +11,6 @@ export default function Profile() {
   // const [loading, setloading] = useState(false);
 
   // setloading(true);
-
   useEffect(() => {
     fire
       .firestore()
@@ -27,7 +26,6 @@ export default function Profile() {
   return (
     <div>
       {asteroidIds.map((asteroid_id) => {
-        console.log("aster:", asteroid_id);
         return <SearchAsteroid key={asteroid_id} id={asteroid_id} />;
       })}
       hey

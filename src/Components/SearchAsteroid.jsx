@@ -6,7 +6,7 @@ const apiKey = process.env.REACT_APP_NASA_API_KEY;
 export default function SearchAsteroid({ id }) {
   const [loading, setloading] = useState(false);
 
-  const [asteroid, setAsteroid] = useState([]);
+  const [Asteroid, setAsteroid] = useState([]);
   // setloading(true);
 
   useEffect(() => {
@@ -23,8 +23,8 @@ export default function SearchAsteroid({ id }) {
   }, [id]);
   // console.log("asteroid", asteroid.estimated_diameter.kilometers);
 
-  console.log("asteroidinsearch", asteroid);
-  return <div>{loading ? <Loading /> : <div>{asteroid.name}</div>}</div>;
+  console.log("asteroidinsearch", Asteroid);
+  return <div>{loading ? <Loading /> : <div>{Asteroid.name}</div>}</div>;
   // return (
   //   <div className="mx-auto">
   //     <ShowAsteroid key={asteroid.id} asteroid={asteroid} />;

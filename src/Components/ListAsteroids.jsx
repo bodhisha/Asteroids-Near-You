@@ -5,7 +5,7 @@ const apiKey = process.env.REACT_APP_NASA_API_KEY;
 
 export default function ListAsteroids() {
   const [asteroidData, setAsteroidData] = useState([]);
-
+  console.log(asteroidData);
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
