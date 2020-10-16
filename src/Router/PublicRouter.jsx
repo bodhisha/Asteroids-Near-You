@@ -12,8 +12,6 @@ const routes = {
   "/": () => <Home />,
   "/login": () => <Login />,
   "/register": () => <Register />,
-  "/profile": () => <Profile />,
-
   "/asteroid": () => <AsteroidsFilteredOnDate />,
 };
 
