@@ -1,5 +1,5 @@
 import React from "react";
-import { useRoutes, navigate } from "hookrouter";
+import { useRoutes, navigate } from "raviger";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
 import PublicNavBar from "../Components/Navbar/PublicNavBar";
@@ -14,12 +14,9 @@ const routes = {
 
 export default function PublicRouter() {
   const pages = useRoutes(routes);
-
-  !pages && navigate("/");
   return (
     <div className="min-h-screen">
       <PublicNavBar />
-
       {pages}
       {!pages && (
         <div className="flex justify-center py-16">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { A } from "hookrouter";
+import { Link } from "raviger";
 import fire from "firebase";
 
 export default function NavBar({ links, logout }) {
@@ -18,13 +18,13 @@ export default function NavBar({ links, logout }) {
   };
   return (
     <nav className="flex items-center justify-between flex-wrap bg-blue-200">
-      <A href="/">
+      <Link href="/">
         <div className="flex items-center flex-shrink-0 text-white mr-6 py-6 pl-6">
           <span className="font-semibold text-blue-800 text-xl ml-1 tracking-tight">
             Spaceoid
           </span>
         </div>
-      </A>
+      </Link>
       <div className="block lg:hidden py-6 pr-6">
         <button
           onClick={() => setShown(!shown)}
@@ -48,14 +48,14 @@ export default function NavBar({ links, logout }) {
         <div className="text-sm lg:flex-grow flex flex-col lg:flex-row">
           {links &&
             links.map((el) => (
-              <A
+              <Link
                 key={el.title}
                 onClick={() => setShown(!shown)}
                 className="block text-blue-800 text-base font-bold lg:inline-block lg:mt-0 text-gray-200 hover:text-white pr-20 lg:px-4 py-2 text-right lg:text-left lg:hover:bg-blue-300 hover:bg-blue-300"
                 href={el.link}
               >
                 {el.title}
-              </A>
+              </Link>
             ))}
         </div>
         <div className="flex justify-end">

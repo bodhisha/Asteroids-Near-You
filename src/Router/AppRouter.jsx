@@ -1,5 +1,5 @@
 import React from "react";
-import { useRoutes, navigate } from "hookrouter";
+import { useRoutes, navigate } from "raviger";
 import AsteroidsFilteredOnDate from "../Components/AsteroidsFilteredOnDate";
 import UserNavBar from "../Components/Navbar/UserNavBar";
 import Home from "../Components/Home";
@@ -12,7 +12,6 @@ const AppRouter = () => {
     "/asteroid": () => <AsteroidsFilteredOnDate />,
   };
   const pages = useRoutes(routes);
-  !pages && navigate("/");
   return (
     <div className="bg-gray-200">
       <UserNavBar />

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import fire from "../firebase";
-import { A } from "hookrouter";
+import { Link } from "raviger";
 
 export default function Register() {
   const initForm = {
@@ -93,12 +93,12 @@ export default function Register() {
               </svg>
               Register
             </button>
-            <A
+            <Link
               className="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-800"
               href="/login"
             >
               Already have an account?
-            </A>
+            </Link>
           </div>
         </form>
       </div>

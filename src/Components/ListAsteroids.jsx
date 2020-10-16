@@ -1,14 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import fire from "firebase";
 import ShowAsteroid from "./ShowAsteroid";
 const apiKey = process.env.REACT_APP_NASA_API_KEY;
 
 export default function ListAsteroids() {
   const [asteroidData, setAsteroidData] = useState([]);
-  const [favourites, setFavourites] = useState([]);
-  const currentUser = fire.auth().currentUser?.uid;
-  console.log("user", currentUser);
 
   useEffect(() => {
     async function fetchData() {
