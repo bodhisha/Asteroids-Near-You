@@ -4,12 +4,14 @@ import AsteroidsFilteredOnDate from "../Components/AsteroidsFilteredOnDate";
 import UserNavBar from "../Components/Navbar/UserNavBar";
 import Home from "../Components/Home";
 import Profile from "../Components/Profile";
+import SearchAsteroid from "../Components/SearchAsteroid";
 
 const AppRouter = () => {
   const routes = {
     "/": () => <Home />,
     "/profile": () => <Profile />,
     "/asteroid": () => <AsteroidsFilteredOnDate />,
+    "/search/:id": ({ id }) => <SearchAsteroid id={id} />,
   };
   const pages = useRoutes(routes);
   return (

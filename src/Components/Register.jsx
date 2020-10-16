@@ -36,14 +36,14 @@ export default function Register() {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-lg rounded px-8 pt-6 pb-8 my-20 bg-gray-200"
+          className="bg-white shadow-lg rounded px-8 pt-6 pb-8 my-20 bg-blue-100"
         >
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="username"
             >
-              Email
+              Email Address
             </label>
             <input
               aria-label="Email"
@@ -55,7 +55,7 @@ export default function Register() {
               placeholder="Email address"
             />
           </div>
-          <div className="mb-4 md:flex md:justify-between">
+          <div className="mb-4  md:justify-between">
             <div className="mb-4 md:mr-2 md:mb-0">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -69,7 +69,7 @@ export default function Register() {
                 type="password"
                 value={form.password}
                 onChange={handleChange}
-                className="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="******************"
               />
             </div>
@@ -78,7 +78,7 @@ export default function Register() {
           <div className="flex items-center justify-between sm:flex-row">
             <button
               type="submit"
-              className="flex items-center bg-indigo-600 hover:bg-indigo-800 text-white font-bold py-2 px-4 sm:px-3 rounded focus:outline-none focus:shadow-outline"
+              className="flex items-center bg-blue-300 hover:bg-blue-400 text-white font-bold py-2 px-4 sm:px-3 rounded focus:outline-none focus:shadow-outline"
             >
               <svg
                 className="h-5 w-5 text-indigo-500 transition ease-in-out duration-150 mr-1"
@@ -94,7 +94,7 @@ export default function Register() {
               Register
             </button>
             <Link
-              className="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-800"
+              className="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-indigo-800"
               href="/login"
             >
               Already have an account?

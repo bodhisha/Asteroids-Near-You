@@ -29,20 +29,20 @@ export default function Login() {
     <div className="h-full flex items-center justify-center py-5 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
         <div>
-          <h2 className="mt-6 text-center text-3xl leading-9 font-bold text-gray-800 uppercase">
+          <h2 className="mt-6 text-center text-3xl leading-9 font-bold text-blue-800 uppercase">
             Sign in to continue
           </h2>
         </div>
         <form
           onSubmit={handleSubmit}
-          className="bg-gray-200 shadow-lg rounded px-8 pt-6 pb-8 my-20"
+          className="bg-blue-100 shadow-lg rounded px-8 pt-6 pb-8 my-20"
         >
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="email"
             >
-              Email
+              Email Address
             </label>
             <input
               aria-label="Email"
@@ -68,14 +68,14 @@ export default function Login() {
               value={form.password}
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="******************"
+              placeholder="***********"
             />
           </div>
 
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className={`flex items-center  text-white font-bold py-2 px-4 sm:px-3 rounded focus:outline-none focus:shadow-outline`}
+              className={`flex items-center hover:bg-blue-400   bg-blue-300 text-white font-bold py-2 px-4 sm:px-3 rounded focus:outline-none focus:shadow-outline`}
             >
               <svg
                 className={`h-5 w-5  transition ease-in-out duration-150 mr-1`}
@@ -92,7 +92,7 @@ export default function Login() {
             </button>
             <div className="flex flex-col items-center">
               <a
-                className="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-800 my-1"
+                className="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-indigo-800 my-1"
                 href="/register"
               >
                 Register Account
