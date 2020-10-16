@@ -49,8 +49,8 @@ export default function ShowAsteroid({ asteroid }) {
             Diameter
           </dt>
           <dd className="mt-1 text-sm leading-5 text-gray-900">
-            {asteroid.estimated_diameter.kilometers.estimated_diameter_max} km ~
-            {asteroid.estimated_diameter.kilometers.estimated_diameter_max} km
+            {asteroid.estimated_diameter.kilometers.estimated_diameter_max}km -
+            {asteroid.estimated_diameter.kilometers.estimated_diameter_max}km
           </dd>
         </div>
         <div className="sm:col-span-1">

@@ -19,7 +19,7 @@ export default function ListAsteroids() {
 
   return (
     <div>
-      <h3 className="text-3xl font-bold text-blue-800 m-2 ">
+      <h3 className="text-3xl text-center font-bold text-blue-800 m-2 ">
         Asteroids near Earth
       </h3>
       <div className="mx-auto">

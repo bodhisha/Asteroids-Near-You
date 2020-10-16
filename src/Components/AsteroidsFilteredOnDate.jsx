@@ -68,8 +68,6 @@ export default function AsteroidsFilteredOnDate() {
                 <div className="mx-auto">
                   <ShowAsteroid key={asteroid.id} asteroid={asteroid} />
                 </div>
-
-
               )
 
             })

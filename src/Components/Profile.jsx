@@ -24,11 +24,14 @@ export default function Profile() {
   }, [user]);
 
   return (
-    <div>
+    <div className="mx-auto  h-screen">
+      <div className="text-blue-800 text-3xl text-center m-2 font-bold">
+        Favourite Asteroids
+      </div>
+
       {asteroidIds.map((asteroid_id) => {
         return <SearchAsteroid key={asteroid_id} id={asteroid_id} />;
       })}
-      hey
     </div>
   );
 }
