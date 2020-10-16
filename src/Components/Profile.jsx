@@ -1,33 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import fire from "firebase";
 import SearchAsteroid from "../Components/SearchAsteroid";
+import { AuthContext } from "./Context/AuthContext";
 
-export default function Profile({ userId }) {
+export default function Profile() {
   const [asteroidIds, setAsteroidIds] = useState([]);
   // const currentUser = fire.auth().currentUser?.uid;
-  console.log("profile", userId);
-  const [favAsteroidIds, setFavAsteroidIds] = useState([]);
+  const [user, setUser] = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   fire
-  //     .firestore()
-  //     .collection("users")
-  //     .doc(userId)
-  //     .collection("favourites")
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       setAsteroidIds(querySnapshot.docs.map((doc) => doc.data().asteroid_id));
-  //     });
-  // }, [userId]);
-
-  console.log("a", asteroidIds);
+  useEffect(() => {
+    fire
+      .firestore()
+      .collection("favourites")
+      .where("user_id", "==", user)
+      .get()
+      .then((querySnapshot) => {
+        setAsteroidIds(querySnapshot.docs.map((doc) => doc.data().asteroid_id));
+      });
+  }, [user]);
 
   return (
     <div>
-      {/* {asteroidIds.map((a) => {
-        return <SearchAsteroid key={a} id={a} />;
+      {asteroidIds.map((asteroid_id) => {
+        return <SearchAsteroid key={asteroid_id} id={asteroid_id} />;
       })}
-      hey */}
+      hey
     </div>
   );
 }

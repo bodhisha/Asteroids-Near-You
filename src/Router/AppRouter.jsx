@@ -3,17 +3,14 @@ import { useRoutes, navigate } from "hookrouter";
 import AsteroidsFilteredOnDate from "../Components/AsteroidsFilteredOnDate";
 import UserNavBar from "../Components/Navbar/UserNavBar";
 import Home from "../Components/Home";
-import Register from "../Components/Register";
 import Profile from "../Components/Profile";
 
-const AppRouter = (userId) => {
-  console.log("router", userId);
-
+const AppRouter = () => {
   const routes = {
     "/": () => <Home />,
-    "/profile": () => <Profile user={userId} />,
+    "/profile": () => <Profile />,
+    "/asteroid": () => <AsteroidsFilteredOnDate />,
   };
-  console.log("app router here");
   const pages = useRoutes(routes);
   !pages && navigate("/");
   return (
