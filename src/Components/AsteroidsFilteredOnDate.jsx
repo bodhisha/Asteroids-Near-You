@@ -12,10 +12,11 @@ export default function AsteroidsFilteredOnDate() {
     return [date.getFullYear(), month, day].join("-");
   }
 
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const [asteroidData, setAsteroidData] = useState([]);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -33,45 +34,71 @@ export default function AsteroidsFilteredOnDate() {
   return (
     <div>
       <div className="w-full mx-auto md:w-1/4 px-3 mb-6 md:mb-0 pt-5">
-        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          Start Date
+        <div className="flex justify-around">
+          <div className="flex flex-col">
+            <label className="px-2 block uppercase tracking-wide text-gray-700 text-xs font-bold m-1">
+              Start Date
         </label>
-        <div className="relative pt-2">
-          <DatePicker
-            className="appearance-none  w-half bg-grey-lighter text-grey-darker  py-1 px-2"
-            value={startDate}
-            onChange={(date) => setStartDate(date)}
-            clearIcon={null}
-            format="y-MM-dd"
-          />
-        </div>
-        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          End Date
+            <div className="relative ">
+              <DatePicker
+                className="appearance-none  w-half bg-grey-lighter text-grey-darker  py-1 px-2"
+                value={startDate}
+                onChange={(date) => setStartDate(date)}
+                clearIcon={null}
+                format="y-MM-dd"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col">
+
+            <label className="px-2 block uppercase tracking-wide text-gray-700 text-xs font-bold m-1">
+              End Date
         </label>
-        <div className="relative pt-2">
-          <DatePicker
-            className="appearance-none  w-half bg-grey-lighter text-grey-darker  py-1 px-2"
-            value={endDate}
-            onChange={(date) => setEndDate(date)}
-            clearIcon={null}
-            format="y-MM-dd"
-          />
+            <div className="relative">
+              <DatePicker
+                className="appearance-none  w-half bg-grey-lighter text-grey-darker  py-1 px-2"
+                value={endDate}
+                onChange={(date) => setEndDate(date)}
+                clearIcon={null}
+                format="y-MM-dd"
+                maxDate={
+                  new Date(
+                    +new Date(startDate) +
+                    (7 - 1) *
+                    60 *
+                    60 *
+                    24 *
+                    1000
+                  )
+                }
+                minDate={
+                  startDate
+                }
+              />
+            </div>
+          </div>
+
         </div>
-        {/* asteroid.close_approach_data.map((date) => console.log(date.close_approach_date_full)) */}
-
-
         {asteroidData &&
-          (Object.values(asteroidData).map((dateWiseData) =>
-            Object.values(dateWiseData).map((asteroid) => asteroid)).flat().sort((a, b) => a.close_approach_data[0].epoch_date_close_approach - b.close_approach_data[0].epoch_date_close_approach).slice(0, 10).map((asteroid) => {
+          Object.values(asteroidData)
+            .map((dateWiseData) =>
+              Object.values(dateWiseData).map((asteroid) => asteroid)
+            )
+            .flat()
+            .sort(
+              (a, b) =>
+                a.close_approach_data[0].epoch_date_close_approach -
+                b.close_approach_data[0].epoch_date_close_approach
+            )
+            .slice(0, 10)
+            .map((asteroid) => {
               console.log(asteroid);
               return (
                 <div className="mx-auto">
                   <ShowAsteroid key={asteroid.id} asteroid={asteroid} />
                 </div>
-              )
-
-            })
-          )}
+              );
+            })}
       </div>
     </div>
   );

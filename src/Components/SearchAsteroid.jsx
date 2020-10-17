@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ShowAsteroid from "./ShowAsteroid";
+import Error from "./Common/Error"
 import { Loading } from "../Components/Common/Loader";
 const apiKey = process.env.REACT_APP_NASA_API_KEY;
 
@@ -27,17 +28,17 @@ export default function SearchAsteroid({ id }) {
       const data = await res?.json();
       setAsteroid(data);
       setloading(false);
-      console.log(res);
     }
     fetchData(id);
   }, [id]);
+  console.log("try", asteroid);
 
   // console.log("asteroid", asteroid.estimated_diameter.kilometers);
 
   console.log("asteroidinsearch", asteroid);
   return (
     <div>
-      {error ? (<div>ERROR</div>) : (
+      {error ? (<Error />) : (
         <div>
           {loading ? (
             <Loading />

@@ -15,7 +15,7 @@ const routes = {
 export default function PublicRouter() {
   const pages = useRoutes(routes);
   return (
-    <div className="min-h-screen">
+    <div className="bg-gray-200 min-h-screen">
       <PublicNavBar />
       {pages}
       {!pages && (

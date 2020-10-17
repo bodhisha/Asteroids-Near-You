@@ -15,7 +15,7 @@ const AppRouter = () => {
   };
   const pages = useRoutes(routes);
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-200 h-screen">
       <UserNavBar />
 
       {pages}
