@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ShowAsteroid from "./ShowAsteroid";
-import { Loading } from "../Components/Common/Loader";
+import { Loading } from "../Common/Loader";
 
 const apiKey = process.env.REACT_APP_NASA_API_KEY;
 

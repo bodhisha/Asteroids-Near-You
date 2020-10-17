@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { useContext } from "react";
+import React, { useState, useContext } from "react";
 import fire from "firebase";
-import { AuthContext } from "../Components/Context/AuthContext";
-import * as Notification from "../Components/Common/Notification";
+import { AuthContext } from "../Context/AuthContext";
+import * as Notification from "../Common/Notification";
 
 export default function ShowAsteroid({ asteroid }) {
   const [user, setUser] = useContext(AuthContext);

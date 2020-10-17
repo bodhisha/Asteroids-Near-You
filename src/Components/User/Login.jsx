@@ -1,8 +1,7 @@
-import React from "react";
-import { useState } from "react";
-import fire from "../firebase";
+import React, { useState } from "react";
+import fire from "../../firebase";
 import { navigate } from "raviger";
-import * as Notification from "../Components/Common/Notification";
+import * as Notification from "../Common/Notification";
 
 export default function Login() {
   const initForm = {

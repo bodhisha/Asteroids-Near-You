@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import fire from "../firebase";
+import fire from "../../firebase";
 import { Link, navigate } from "raviger";
-import * as Notification from "../Components/Common/Notification";
+import * as Notification from "../Common/Notification";
 
 export default function Register() {
   const initForm = {

@@ -23,15 +23,20 @@ export default function Home() {
           value={searchId}
         ></input>
 
-        <button onClick={handleSearch} className="text-white font-bold rounded p-2 bg-blue-300">
+        <button
+          onClick={handleSearch}
+          className="text-white font-bold rounded p-2 bg-blue-300"
+        >
           Search
-      </button>
-
+        </button>
       </div>
       <div className="flex justify-center m-2">
-        <Link href="/asteroid" className="bg-blue-300 p-2 inline-block rounded-lg shadow hover:bg-blue-400 text-center  text-white font-bold">
+        <Link
+          href="/asteroid"
+          className="bg-blue-300 p-2 inline-block rounded-lg shadow hover:bg-blue-400 text-center  text-white font-bold"
+        >
           Filter Asteroids by Date
-      </Link>
+        </Link>
       </div>
       <ListAsteroids />
     </div>

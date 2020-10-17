@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-date-picker";
 import ShowAsteroid from "./ShowAsteroid";
-import { Loading } from "../Components/Common/Loader";
+import { Loading } from "../Common/Loader";
 
 const apiKey = process.env.REACT_APP_NASA_API_KEY;
 
@@ -17,7 +17,6 @@ export default function AsteroidsFilteredOnDate() {
   const [endDate, setEndDate] = useState(new Date());
   const [loading, setloading] = useState(true);
   const [asteroidData, setAsteroidData] = useState([]);
-
 
   useEffect(() => {
     async function fetchData() {
@@ -42,7 +41,7 @@ export default function AsteroidsFilteredOnDate() {
         <div className="flex flex-col">
           <label className="px-2 block uppercase tracking-wide text-blue-700 text-xs font-bold m-1">
             Start Date
-      </label>
+          </label>
           <div className="relative ">
             <DatePicker
               className="appearance-none  w-half bg-blue-lighter text-blue-darker  py-1 px-2"
@@ -56,7 +55,7 @@ export default function AsteroidsFilteredOnDate() {
         <div className="flex flex-col">
           <label className="px-2 block uppercase tracking-wide text-blue-700 text-xs font-bold m-1">
             End Date
-      </label>
+          </label>
           <div className="relative">
             <DatePicker
               className="appearance-none  w-half bg-blue-lighter text-blue-darker  py-1 px-2"
@@ -65,18 +64,9 @@ export default function AsteroidsFilteredOnDate() {
               clearIcon={null}
               format="y-MM-dd"
               maxDate={
-                new Date(
-                  +new Date(startDate) +
-                  (7 - 1) *
-                  60 *
-                  60 *
-                  24 *
-                  1000
-                )
+                new Date(+new Date(startDate) + (7 - 1) * 60 * 60 * 24 * 1000)
               }
-              minDate={
-                startDate
-              }
+              minDate={startDate}
             />
           </div>
         </div>
@@ -86,27 +76,25 @@ export default function AsteroidsFilteredOnDate() {
           <Loading />
         </div>
       ) : (
-          <div className=" mx-auto flex flex-wrap max-w-5xl">
-
-            {asteroidData &&
-              Object.values(asteroidData)
-                .map((dateWiseData) =>
-                  Object.values(dateWiseData).map((asteroid) => asteroid)
-                )
-                .flat()
-                .sort(
-                  (a, b) =>
-                    a.close_approach_data[0].epoch_date_close_approach -
-                    b.close_approach_data[0].epoch_date_close_approach
-                )
-                .slice(0, 10)
-                .map((asteroid) => {
-                  console.log(asteroid);
-                  return (
-                    <ShowAsteroid key={asteroid.id} asteroid={asteroid} />
-                  );
-                })}
-          </div>)}
+        <div className=" mx-auto flex flex-wrap max-w-5xl">
+          {asteroidData &&
+            Object.values(asteroidData)
+              .map((dateWiseData) =>
+                Object.values(dateWiseData).map((asteroid) => asteroid)
+              )
+              .flat()
+              .sort(
+                (a, b) =>
+                  a.close_approach_data[0].epoch_date_close_approach -
+                  b.close_approach_data[0].epoch_date_close_approach
+              )
+              .slice(0, 10)
+              .map((asteroid) => {
+                console.log(asteroid);
+                return <ShowAsteroid key={asteroid.id} asteroid={asteroid} />;
+              })}
+        </div>
+      )}
     </div>
   );
 }

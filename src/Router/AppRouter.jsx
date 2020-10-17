@@ -1,10 +1,10 @@
 import React from "react";
 import { useRoutes, navigate } from "raviger";
-import AsteroidsFilteredOnDate from "../Components/AsteroidsFilteredOnDate";
+import AsteroidsFilteredOnDate from "../Components/Asteroids/AsteroidsFilteredOnDate";
 import UserNavBar from "../Components/Navbar/UserNavBar";
-import Home from "../Components/Home";
-import Profile from "../Components/Profile";
-import SearchAsteroid from "../Components/SearchAsteroid";
+import Home from "../Components/Asteroids/Home";
+import Profile from "../Components/User/Profile";
+import SearchAsteroid from "../Components/Asteroids/SearchAsteroid";
 
 const AppRouter = () => {
   const routes = {
@@ -14,6 +14,7 @@ const AppRouter = () => {
     "/search/:id": ({ id }) => <SearchAsteroid id={id} />,
   };
   const pages = useRoutes(routes);
+  !pages && navigate("/");
   return (
     <div className="bg-gray-200 min-h-screen">
       <UserNavBar />
