@@ -6,7 +6,7 @@ import { AuthContext } from "../Components/Context/AuthContext";
 export default function ShowAsteroid({ asteroid }) {
   const [user, setUser] = useContext(AuthContext);
 
-  const handleFavourites = (id) => {
+  const AddToFavourites = (id) => {
     fire
       .firestore()
       .collection("favourites")
@@ -21,6 +21,26 @@ export default function ShowAsteroid({ asteroid }) {
         console.error("Error adding document: ", error);
       });
   };
+  const RemoveFromFavourites = (id) => {
+    fire
+      .firestore()
+      .collection("favourites")
+      .where("asteroid_id", "==", id)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref
+            .delete()
+            .then(() => {
+              console.log("Document successfully deleted!");
+            })
+            .catch(function (error) {
+              console.error("Error removing document: ", error);
+            });
+        });
+      });
+  };
+
   console.log(user);
   return (
     <div
@@ -78,22 +98,23 @@ export default function ShowAsteroid({ asteroid }) {
           </dd>
         </div>
         {asteroid.close_approach_data.map((date) => {
-          return (<>
-            <div className="sm:col-span-1">
-              <dt className="text-sm leading-5 font-medium text-gray-500">
-                Closet Approach date:
-              </dt>
-              <dd className="mt-1 text-sm leading-5 text-gray-900">
-                {
-                  (date.close_approach_date_full || "")
-                }
-              </dd>
-            </div>
-          </>)
+          return (
+            <>
+              <div className="sm:col-span-1">
+                <dt className="text-sm leading-5 font-medium text-gray-500">
+                  Closet Approach date:
+                </dt>
+                <dd className="mt-1 text-sm leading-5 text-gray-900">
+                  {date.close_approach_date_full || ""}
+                </dd>
+              </div>
+            </>
+          );
         })}
         <div className="sm:col-span-1">
           <dt className="text-sm leading-5 font-medium text-gray-500">
-            Neo Reference Id          </dt>
+            Neo Reference Id{" "}
+          </dt>
           <dd className="mt-1 text-sm leading-5 text-gray-900">
             {asteroid.neo_reference_id}
           </dd>
@@ -109,10 +130,16 @@ export default function ShowAsteroid({ asteroid }) {
       </dl>
       <div className="flex justify-between mt-4">
         <button
-          onClick={() => handleFavourites(asteroid.id)}
+          onClick={() => AddToFavourites(asteroid.id)}
           className="text-sm border py-2 px-4 font-semibold block rounded hover:bg-gray-200 text-gray-900"
         >
           Add to favourites
+        </button>
+        <button
+          onClick={() => RemoveFromFavourites(asteroid.id)}
+          className="text-sm border py-2 px-4 font-semibold block rounded hover:bg-gray-200 text-gray-900"
+        >
+          delete favourites
         </button>
       </div>
     </div>
