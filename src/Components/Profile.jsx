@@ -3,10 +3,10 @@ import fire from "firebase";
 import SearchAsteroid from "../Components/SearchAsteroid";
 import { AuthContext } from "./Context/AuthContext";
 import { Loading } from "../Components/Common/Loader";
+import Error from "./Common/Error";
 
 export default function Profile() {
   const [asteroidIds, setAsteroidIds] = useState([]);
-  // const currentUser = fire.auth().currentUser?.uid;
   const [user, setUser] = useContext(AuthContext);
   // const [loading, setloading] = useState(false);
 
@@ -22,13 +22,15 @@ export default function Profile() {
         // setloading(false);
       });
   }, [user]);
+  console.log(asteroidIds.length);
 
   return (
     <div className="mx-auto  h-screen">
+      {asteroidIds.length === 0 && <Error />}
+
       <div className="text-blue-800 text-3xl text-center m-2 font-bold">
         Favourite Asteroids
       </div>
-
       {asteroidIds.map((asteroid_id) => {
         return <SearchAsteroid key={asteroid_id} id={asteroid_id} />;
       })}

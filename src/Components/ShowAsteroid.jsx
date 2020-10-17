@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import fire from "firebase";
 import { AuthContext } from "../Components/Context/AuthContext";
+import * as Notification from "../Components/Common/Notification";
 
 export default function ShowAsteroid({ asteroid }) {
   const [user, setUser] = useContext(AuthContext);
@@ -15,10 +16,14 @@ export default function ShowAsteroid({ asteroid }) {
         user_id: user,
       })
       .then(function (docRef) {
-        console.log("Document written with ID: ", docRef.id);
+        Notification.Success({
+          msg: `Asteroid ${asteroid.name} Added to favorites List`,
+        });
       })
       .catch(function (error) {
-        console.error("Error adding document: ", error);
+        Notification.Error({
+          msg: `Error adding document ${error}`,
+        });
       });
   };
   const RemoveFromFavourites = (id) => {
@@ -32,10 +37,14 @@ export default function ShowAsteroid({ asteroid }) {
           doc.ref
             .delete()
             .then(() => {
-              console.log("Document successfully deleted!");
+              Notification.Success({
+                msg: `Asteroid ${asteroid.name} Removed from favorites List`,
+              });
             })
             .catch(function (error) {
-              console.error("Error removing document: ", error);
+              Notification.Error({
+                msg: `Error Removing asteroid from Favourite List ${error}`,
+              });
             });
         });
       });
