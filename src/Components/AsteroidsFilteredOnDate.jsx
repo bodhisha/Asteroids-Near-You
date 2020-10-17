@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-date-picker";
 import ShowAsteroid from "./ShowAsteroid";
+import { Loading } from "../Components/Common/Loader";
 
 const apiKey = process.env.REACT_APP_NASA_API_KEY;
 
@@ -14,7 +15,7 @@ export default function AsteroidsFilteredOnDate() {
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-
+  const [loading, setloading] = useState(true);
   const [asteroidData, setAsteroidData] = useState([]);
 
 
@@ -27,6 +28,7 @@ export default function AsteroidsFilteredOnDate() {
       );
       const data = await res.json();
       setAsteroidData(data.near_earth_objects);
+      setloading(false);
     }
     fetchData();
   }, [startDate, endDate]);
@@ -79,27 +81,32 @@ export default function AsteroidsFilteredOnDate() {
           </div>
         </div>
       </div>
-      <div className=" mx-auto flex flex-wrap max-w-5xl">
+      {loading ? (
+        <div>
+          <Loading />
+        </div>
+      ) : (
+          <div className=" mx-auto flex flex-wrap max-w-5xl">
 
-        {asteroidData &&
-          Object.values(asteroidData)
-            .map((dateWiseData) =>
-              Object.values(dateWiseData).map((asteroid) => asteroid)
-            )
-            .flat()
-            .sort(
-              (a, b) =>
-                a.close_approach_data[0].epoch_date_close_approach -
-                b.close_approach_data[0].epoch_date_close_approach
-            )
-            .slice(0, 10)
-            .map((asteroid) => {
-              console.log(asteroid);
-              return (
-                <ShowAsteroid key={asteroid.id} asteroid={asteroid} />
-              );
-            })}
-      </div>
+            {asteroidData &&
+              Object.values(asteroidData)
+                .map((dateWiseData) =>
+                  Object.values(dateWiseData).map((asteroid) => asteroid)
+                )
+                .flat()
+                .sort(
+                  (a, b) =>
+                    a.close_approach_data[0].epoch_date_close_approach -
+                    b.close_approach_data[0].epoch_date_close_approach
+                )
+                .slice(0, 10)
+                .map((asteroid) => {
+                  console.log(asteroid);
+                  return (
+                    <ShowAsteroid key={asteroid.id} asteroid={asteroid} />
+                  );
+                })}
+          </div>)}
     </div>
   );
 }

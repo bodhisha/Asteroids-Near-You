@@ -72,7 +72,7 @@ export default function ShowAsteroid({ asteroid }) {
       <div className="bg-white p-4 mt-4 rounded-lg shadow h-full flex flex-col justify-between">
         <div className="flex items-center flex-col">
           <h2 className="text-2xl text-blue-700 font-bold">{asteroid.name}</h2>
-          <span className="relative ml-2">
+          <span className="bg-blue-100 rounded px-1 relative ml-2">
             <div>
               {asteroid.is_potentially_hazardous_asteroid
                 ? "Potentially Hazardous"
@@ -152,7 +152,7 @@ export default function ShowAsteroid({ asteroid }) {
               Aphelion distance
             </dt>
             <dd className="mt-1 text-sm leading-5 text-gray-900">
-              {asteroid.orbital_data.aphelion_distanceaphelion_distance}
+              {asteroid.orbital_data.aphelion_distance || "Nil"}
             </dd>
           </div>
         </dl>
