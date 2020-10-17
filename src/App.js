@@ -26,7 +26,6 @@ function App() {
     authListener();
   }, []);
 
-  console.log("app", user ? "hola" : "bolo");
   if (user) return <AppRouter userId={user} />;
   else {
     return <PublicRouter />;

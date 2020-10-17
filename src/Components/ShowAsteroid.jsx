@@ -31,6 +31,7 @@ export default function ShowAsteroid({ asteroid }) {
       .firestore()
       .collection("favourites")
       .where("asteroid_id", "==", id)
+      .where("user_id", "==", user)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
