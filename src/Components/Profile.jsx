@@ -3,7 +3,7 @@ import fire from "firebase";
 import SearchAsteroid from "../Components/SearchAsteroid";
 import { AuthContext } from "./Context/AuthContext";
 import { Loading } from "../Components/Common/Loader";
-import Error from "./Common/Error";
+import ErrorProfile from "./Common/ErrorProfile";
 
 export default function Profile() {
   const [asteroidIds, setAsteroidIds] = useState([]);
@@ -26,14 +26,14 @@ export default function Profile() {
 
   return (
     <div className="mx-auto  h-screen">
-      {asteroidIds.length === 0 && <Error />}
-
-      <div className="text-blue-800 text-3xl text-center m-2 font-bold">
+      {asteroidIds.length === 0 ? <ErrorProfile /> : (<div><div className="text-blue-800 text-3xl text-center m-2 font-bold">
         Favourite Asteroids
       </div>
-      {asteroidIds.map((asteroid_id) => {
-        return <SearchAsteroid key={asteroid_id} id={asteroid_id} />;
-      })}
+        {asteroidIds.map((asteroid_id) => {
+          return <SearchAsteroid key={asteroid_id} id={asteroid_id} />;
+        })}</div>)}
+
+
     </div>
   );
 }

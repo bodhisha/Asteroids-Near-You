@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import fire from "../firebase";
+import { navigate } from "raviger";
+import * as Notification from "../Components/Common/Notification";
 
 export default function Login() {
   const initForm = {
@@ -14,6 +16,12 @@ export default function Login() {
     fire
       .auth()
       .signInWithEmailAndPassword(form.email, form.password)
+      .then(navigate("/"))
+      .then(
+        Notification.Success({
+          msg: `User Logged in Successfully`,
+        })
+      )
       .catch((err) => {
         console.log("err", err.message);
       });

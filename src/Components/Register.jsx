@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import fire from "../firebase";
-import { Link } from "raviger";
+import { Link, navigate } from "raviger";
+import * as Notification from "../Components/Common/Notification";
 
 export default function Register() {
   const initForm = {
@@ -22,6 +23,12 @@ export default function Register() {
     fire
       .auth()
       .createUserWithEmailAndPassword(form.email, form.password)
+      .then(navigate("/profile"))
+      .then(
+        Notification.Success({
+          msg: `User Registered Successfully`,
+        })
+      )
       .catch((err) => {
         console.log("err", err.message);
       });

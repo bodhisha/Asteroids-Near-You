@@ -3,13 +3,16 @@ import { useRoutes, navigate } from "raviger";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
 import PublicNavBar from "../Components/Navbar/PublicNavBar";
-
+import AsteroidsFilteredOnDate from "../Components/AsteroidsFilteredOnDate";
+import SearchAsteroid from "../Components/SearchAsteroid";
 import Home from "../Components/Home";
 
 const routes = {
   "/": () => <Home />,
   "/login": () => <Login />,
   "/register": () => <Register />,
+  "/asteroid": () => <AsteroidsFilteredOnDate />,
+  "/search/:id": ({ id }) => <SearchAsteroid id={id} />,
 };
 
 export default function PublicRouter() {

@@ -33,52 +33,54 @@ export default function AsteroidsFilteredOnDate() {
 
   return (
     <div>
-      <div className="w-full mx-auto md:w-1/4 px-3 mb-6 md:mb-0 pt-5">
-        <div className="flex justify-around">
-          <div className="flex flex-col">
-            <label className="px-2 block uppercase tracking-wide text-gray-700 text-xs font-bold m-1">
-              Start Date
-        </label>
-            <div className="relative ">
-              <DatePicker
-                className="appearance-none  w-half bg-grey-lighter text-grey-darker  py-1 px-2"
-                value={startDate}
-                onChange={(date) => setStartDate(date)}
-                clearIcon={null}
-                format="y-MM-dd"
-              />
-            </div>
+      <div className="text-center m-2 text-3xl text-blue-700 font-extrabold">
+        Filter Asteroids based on Closest Approach Date
+      </div>
+      <div className="max-w-lg mx-auto m-2 flex justify-center">
+        <div className="flex flex-col">
+          <label className="px-2 block uppercase tracking-wide text-blue-700 text-xs font-bold m-1">
+            Start Date
+      </label>
+          <div className="relative ">
+            <DatePicker
+              className="appearance-none  w-half bg-blue-lighter text-blue-darker  py-1 px-2"
+              value={startDate}
+              onChange={(date) => setStartDate(date)}
+              clearIcon={null}
+              format="y-MM-dd"
+            />
           </div>
-          <div className="flex flex-col">
-
-            <label className="px-2 block uppercase tracking-wide text-gray-700 text-xs font-bold m-1">
-              End Date
-        </label>
-            <div className="relative">
-              <DatePicker
-                className="appearance-none  w-half bg-grey-lighter text-grey-darker  py-1 px-2"
-                value={endDate}
-                onChange={(date) => setEndDate(date)}
-                clearIcon={null}
-                format="y-MM-dd"
-                maxDate={
-                  new Date(
-                    +new Date(startDate) +
-                    (7 - 1) *
-                    60 *
-                    60 *
-                    24 *
-                    1000
-                  )
-                }
-                minDate={
-                  startDate
-                }
-              />
-            </div>
-          </div>
-
         </div>
+        <div className="flex flex-col">
+          <label className="px-2 block uppercase tracking-wide text-blue-700 text-xs font-bold m-1">
+            End Date
+      </label>
+          <div className="relative">
+            <DatePicker
+              className="appearance-none  w-half bg-blue-lighter text-blue-darker  py-1 px-2"
+              value={endDate}
+              onChange={(date) => setEndDate(date)}
+              clearIcon={null}
+              format="y-MM-dd"
+              maxDate={
+                new Date(
+                  +new Date(startDate) +
+                  (7 - 1) *
+                  60 *
+                  60 *
+                  24 *
+                  1000
+                )
+              }
+              minDate={
+                startDate
+              }
+            />
+          </div>
+        </div>
+      </div>
+      <div className=" mx-auto flex flex-wrap max-w-5xl">
+
         {asteroidData &&
           Object.values(asteroidData)
             .map((dateWiseData) =>
@@ -94,9 +96,7 @@ export default function AsteroidsFilteredOnDate() {
             .map((asteroid) => {
               console.log(asteroid);
               return (
-                <div className="mx-auto">
-                  <ShowAsteroid key={asteroid.id} asteroid={asteroid} />
-                </div>
+                <ShowAsteroid key={asteroid.id} asteroid={asteroid} />
               );
             })}
       </div>

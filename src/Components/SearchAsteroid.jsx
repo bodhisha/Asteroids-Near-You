@@ -18,10 +18,8 @@ export default function SearchAsteroid({ id }) {
         `https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${apiKey}`
       ).then((response) => {
         if (response.status === 200) {
-          console.log("SUCCESSS");
           return response;
         } else if (response.status === 404) {
-          console.log("SOMETHING WENT WRONG");
           setError(true)
         }
       });
@@ -31,11 +29,9 @@ export default function SearchAsteroid({ id }) {
     }
     fetchData(id);
   }, [id]);
-  console.log("try", asteroid);
 
   // console.log("asteroid", asteroid.estimated_diameter.kilometers);
 
-  console.log("asteroidinsearch", asteroid);
   return (
     <div>
       {error ? (<Error />) : (
