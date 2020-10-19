@@ -24,9 +24,15 @@ export default function Login() {
         );
       })
       .catch((err) => {
-        Notification.Error({
-          msg: "Check Credentials and try again!",
-        });
+        if (err.code === "auth/wrong-password") {
+          Notification.Error({
+            msg: "Wrong Password! Try again! :)",
+          });
+        } else {
+          Notification.Error({
+            msg: "Check Credentials and try again!",
+          });
+        }
       });
   };
   const handleChange = (e) => {
