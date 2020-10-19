@@ -15,14 +15,18 @@ export default function Login() {
     fire
       .auth()
       .signInWithEmailAndPassword(form.email, form.password)
-      .then(navigate("/"))
-      .then(
-        Notification.Success({
-          msg: `User Logged in Successfully`,
-        })
-      )
+      .then(function (user) {
+        Notification.Success(
+          {
+            msg: `User Logged in Successfully`,
+          },
+          navigate("/")
+        );
+      })
       .catch((err) => {
-        console.log("err", err.message);
+        Notification.Error({
+          msg: "Check Credentials and try again!",
+        });
       });
   };
   const handleChange = (e) => {
