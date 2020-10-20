@@ -43,13 +43,15 @@ export default function SearchAsteroid({ id }) {
           {loading ? (
             <Loading />
           ) : (
-            <div className="mx-auto justify-center flex flex-wrap max-w-5xl">
-              {asteroid && (
-                <ShowAsteroid
-                  key={asteroid && asteroid.id}
-                  asteroid={asteroid && asteroid}
-                />
-              )}
+            <div>
+              <div className="mx-auto justify-center flex flex-wrap max-w-5xl">
+                {asteroid && (
+                  <ShowAsteroid
+                    key={asteroid && asteroid.id}
+                    asteroid={asteroid && asteroid}
+                  />
+                )}
+              </div>
             </div>
           )}
         </div>

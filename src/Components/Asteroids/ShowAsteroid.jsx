@@ -5,7 +5,6 @@ import * as Notification from "../Common/Notification";
 
 export default function ShowAsteroid({ asteroid }) {
   const [user, setUser] = useContext(AuthContext);
-  const [fav, setFav] = useState(false);
   const AddToFavourites = (id) => {
     fire
       .firestore()
