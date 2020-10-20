@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "raviger";
+import { Link, navigate } from "raviger";
 import fire from "firebase";
 
 export default function NavBar({ links, logout }) {
@@ -11,6 +11,7 @@ export default function NavBar({ links, logout }) {
       .signOut()
       .then(function () {
         console.log("succesfully signed out");
+        navigate("/");
       })
       .catch(function (error) {
         console.log(error.message);
