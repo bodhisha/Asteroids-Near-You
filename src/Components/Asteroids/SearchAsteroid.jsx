@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Error from "../Common/Error";
 import { Loading } from "../Common/Loader";
+import ShowAsteroid from "./ShowAsteroid";
+
 const apiKey = process.env.REACT_APP_NASA_API_KEY;
 
 export default function SearchAsteroid({ id }) {
   const [loading, setloading] = useState(false);
   const [error, setError] = useState(false);
 
-  const [asteroid, setAsteroid] = useState([]);
+  const [asteroid, setAsteroid] = useState("");
   // setloading(true);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export default function SearchAsteroid({ id }) {
     fetchData(id);
   }, [id]);
 
-  // console.log("asteroid", asteroid.estimated_diameter.kilometers);
+  console.log("asteroid", asteroid && asteroid.estimated_diameter.kilometers);
 
   return (
     <div>
@@ -41,80 +43,17 @@ export default function SearchAsteroid({ id }) {
           {loading ? (
             <Loading />
           ) : (
-            <div className="max-w-3xl mx-auto">
-              <div className="bg-blue-300 p-2 m-2 rounded shadow ">
-                <div className="flex justify-between  ">
-                  <p className="text-xl text-blue-700 font-bold">
-                    {asteroid.name}
-                  </p>
-                  {asteroid.is_potentially_hazardous_asteroid ? (
-                    <p className="bg-blue-500 text-sm text-white font-bold p-1 block rounded-lg">
-                      Potentially Hazardous Asteroid
-                    </p>
-                  ) : (
-                    <p className="bg-blue-500 text-sm text-white font-bold p-1 block rounded-lg">
-                      Non-Hazardous Asteroid
-                    </p>
-                  )}
-                </div>
-                {/* <p className="text-sm text-blue-700 ">
-              Estimated Diameter of Asteroid:
-              <span className="text-md text-blue-700 font-bold">
-                Min -
-                {asteroid.estimated_diameter.kilometers.estimated_diameter_max}
-                km , Max -
-                {asteroid.estimated_diameter.kilometers.estimated_diameter_max}
-                km
-              </span>
-            </p> */}
-                {/* <p className="text-sm text-blue-700 ">
-              Orbiting Body :
-              <span className="text-md text-blue-700 font-bold">
-                {asteroid.close_approach_data.close_approach_date_full || ""}
-              </span>
-            </p> */}
-                <p className="text-sm text-blue-700 ">
-                  Designation:
-                  <span className="text-md text-blue-700 font-bold">
-                    {asteroid.designation}
-                  </span>
-                </p>
-                {/* {asteroid.close_approach_data.map((date) => {
-              return (
-                <>
-                  {" "}
-                  <p className="text-sm text-blue-700 ">
-                    Closesrt Approach date:
-                    <span className="text-md text-blue-700 font-bold">
-                      {date.close_approach_date_full || ""}
-                    </span>
-                  </p>
-                </>
-              );
-            })} */}
-
-                <p className="text-sm text-blue-700 ">
-                  Absolute Magnitude:
-                  <span className="text-md text-blue-700 font-bold">
-                    {asteroid.absolute_magnitude_h}
-                  </span>
-                </p>
-                {/* <p className="text-sm text-blue-700 ">
-              Last Observed on :
-              <span className="text-md text-blue-700 font-bold">
-                {asteroid.orbital_data.last_observation_date}
-              </span>
-            </p> */}
-              </div>
+            <div className="mx-auto justify-center flex flex-wrap max-w-5xl">
+              {asteroid && (
+                <ShowAsteroid
+                  key={asteroid && asteroid.id}
+                  asteroid={asteroid && asteroid}
+                />
+              )}
             </div>
           )}
         </div>
       )}
     </div>
   );
-  // return (
-  //   <div className="mx-auto">
-  //     <ShowAsteroid key={asteroid.id} asteroid={asteroid} />;
-  //   </div>
-  // );
 }

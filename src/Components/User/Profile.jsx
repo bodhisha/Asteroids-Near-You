@@ -24,7 +24,7 @@ export default function Profile() {
   console.log(asteroidIds.length);
 
   return (
-    <div className="mx-auto  h-screen">
+    <div className="mx-auto min-h-screen">
       {asteroidIds.length === 0 ? (
         <ErrorProfile />
       ) : (
