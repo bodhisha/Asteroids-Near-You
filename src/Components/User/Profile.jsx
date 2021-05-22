@@ -6,10 +6,8 @@ import ErrorProfile from "../Common/ErrorProfile";
 
 export default function Profile() {
   const [asteroidIds, setAsteroidIds] = useState([]);
-  const [user, setUser] = useContext(AuthContext);
-  // const [loading, setloading] = useState(false);
+  const [user] = useContext(AuthContext);
 
-  // setloading(true);
   useEffect(() => {
     fire
       .firestore()
@@ -18,7 +16,6 @@ export default function Profile() {
       .get()
       .then((querySnapshot) => {
         setAsteroidIds(querySnapshot.docs.map((doc) => doc.data().asteroid_id));
-        // setloading(false);
       });
   }, [user]);
   console.log(asteroidIds.length);

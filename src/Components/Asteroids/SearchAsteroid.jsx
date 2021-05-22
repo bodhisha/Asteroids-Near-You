@@ -15,7 +15,6 @@ export default function SearchAsteroid({ id }) {
   useEffect(() => {
     setloading(true);
     async function fetchData(id) {
-      console.log("data", asteroid);
       const res = await fetch(
         `https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${apiKey}`
       ).then((response) => {

@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import fire from "firebase";
 import { AuthContext } from "../Context/AuthContext";
 import * as Notification from "../Common/Notification";
 
 export default function ShowAsteroid({ asteroid }) {
-  const [user, setUser] = useContext(AuthContext);
+  const [user] = useContext(AuthContext);
   const AddToFavourites = (id) => {
     fire
       .firestore()
@@ -135,7 +135,7 @@ export default function ShowAsteroid({ asteroid }) {
               <>
                 <div className="sm:col-span-1">
                   <dt className="text-sm leading-5 font-medium text-gray-500">
-                    Closet Approach date:
+                    Closest Approach date:
                   </dt>
                   <dd className="mt-1 text-sm leading-5 text-gray-900">
                     {date.close_approach_date_full || "Nil"}
