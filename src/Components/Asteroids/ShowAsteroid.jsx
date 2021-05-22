@@ -130,21 +130,6 @@ export default function ShowAsteroid({ asteroid }) {
               {asteroid.orbital_data.last_observation_date || "Nil"}
             </dd>
           </div>
-          {asteroid.close_approach_data.map((date) => {
-            return (
-              <>
-                <div className="sm:col-span-1">
-                  <dt className="text-sm leading-5 font-medium text-gray-500">
-                    Closest Approach date:
-                  </dt>
-                  <dd className="mt-1 text-sm leading-5 text-gray-900">
-                    {date.close_approach_date_full || "Nil"}
-                  </dd>
-                </div>
-              </>
-            );
-          })}
-
           <div className="sm:col-span-1">
             <dt className="text-sm leading-5 font-medium text-gray-500">
               Aphelion distance
